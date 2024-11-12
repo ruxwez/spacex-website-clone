@@ -1,0 +1,139 @@
+---
+import MenuIcon from "./icons/menuIcon.astro";
+---
+
+<div id="navbar" class="w-full fixed top-0 left-0 z-50">
+  <span class="backgroundNavbar w-full h-0 bg-black absolute top-0 left-0 -z-40"
+  ></span>
+  <div class="content w-full">
+    <div
+      class="max-w-8xl px-9 h-24 mx-auto my-0 flex items-center gap-10 max-xl:h-14"
+    >
+      <!-- Logo -->
+      <a
+        href="/"
+        class="max-xl:absolute max-xl:left-1/2 max-xl:-translate-x-1/2 mb-1.5 w-36 sm:w-52 max-xl:pl-3"
+      >
+        <img src="/logo.svg" class="w-full aspect-[210/26.25]" alt="" />
+      </a>
+      <!-- Navegacion -->
+      <nav
+        class="text-white text-xs font-semibold uppercase flex items-center gap-6 max-xl:hidden"
+      >
+        <a href="/"> Falcon 9 </a>
+        <a href="/"> Falcon Heavy </a>
+        <a href="/"> Dragon </a>
+        <a href="/"> Starship </a>
+        <a href="/"> Human Spacelight </a>
+        <a href="/"> Rideshare </a>
+        <a href="/"> Starshield </a>
+        <a href="/"> Starlink </a>
+      </nav>
+    </div>
+
+    <!-- Navegacion Flotante -->
+    <div
+      class="absolute right-9 max-xl:right-6 top-1/2 -translate-y-1/2 text-white"
+    >
+      <div class="flex gap-5">
+        <a
+          class="text-white text-xs font-semibold uppercase max-xl:hidden"
+          href=""
+        >
+          Shop
+        </a>
+
+        <!-- Boton de menu -->
+        <button id="test">
+          <MenuIcon />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { scroll, animate } from "motion";
+  import { isVisibleInViewport } from "../utils/isVisibleInViewport";
+
+  document.addEventListener("astro:page-load", () => {
+    const minScrollToHidden = 200;
+    const headerElement = document.querySelector("header") as Element;
+    const navbarElement = document.querySelector("#navbar") as Element;
+    const navbarContentElement = navbarElement.querySelector(
+      ".content"
+    ) as Element;
+    const navbarBGElement = navbarElement.querySelector(
+      ".backgroundNavbar"
+    ) as Element;
+
+    let navbarIsHidden: boolean = false;
+    let navbarBGIsHidden: boolean = true;
+    let scrollCache = 0;
+
+    scroll((e) => {
+      let st = e.y.current || document.documentElement.scrollTop;
+
+      if (st > scrollCache) {
+        if (isVisibleInViewport(headerElement)) {
+          /* Se oculta cuando hace scrolldown y el header esta dentro del viewport */
+          if (!navbarIsHidden && st > minScrollToHidden) {
+            animate(navbarContentElement, {
+              opacity: 0,
+            });
+            navbarIsHidden = true;
+            navbarBGIsHidden = true;
+          }
+        } else {
+          /* Se oculta con otra animacion si esta fuera del header */
+          if (!navbarIsHidden) {
+            animate(navbarContentElement, {
+              opacity: 0,
+            });
+            animate(navbarBGElement, {
+              height: "0%",
+            });
+
+            navbarIsHidden = true;
+            navbarBGIsHidden = true;
+          }
+        }
+      } else if (st < scrollCache) {
+        if (isVisibleInViewport(headerElement)) {
+          /* Se muestra si el header esta dentro del viewport */
+          if (navbarIsHidden) {
+            animate(navbarContentElement, {
+              opacity: 1,
+            });
+            navbarIsHidden = false;
+          } else {
+            if (!navbarBGIsHidden) {
+              // Si el navbar ya esta oculto y entra en el header, se muestra con otra animacion
+              animate(navbarBGElement, {
+                height: "0%",
+              }, {
+                delay: 0.2,
+              });
+              navbarBGIsHidden = true;
+            }
+          }
+        } else {
+          /* Se muestra con otra animacion si el header esta fuera del view */
+          if (navbarIsHidden) {
+            animate(navbarContentElement, {
+              opacity: 1,
+            });
+
+            animate(navbarBGElement, {
+              height: "100%",
+            });
+
+            navbarIsHidden = false;
+            navbarBGIsHidden = false;
+          }
+        }
+      }
+      scrollCache = st <= 0 ? 0 : st;
+    });
+  });
+</script>

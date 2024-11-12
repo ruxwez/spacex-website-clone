@@ -1,0 +1,18 @@
+---
+interface Props {
+  src: string;
+  class?: string;
+  id?: string;
+}
+
+const { src, ...props } = Astro.props;
+---
+
+<video
+  class:list={["w-full h-full object-cover -z-10", props.class]}
+  src={src}
+  muted
+  autoplay
+  playsinline
+  preload="auto"
+  loop></video>
