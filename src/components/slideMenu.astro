@@ -1,7 +1,113 @@
 ---
-
+import { NAV_ROUTES } from "../consts/navRoutes.ts";
+import { cn } from "../utils/cn";
 ---
 
-<div id="slideMenu" class="fixed top-0 left-0 w-full h-screen bg-black/90 z-40">
-  <div class="menu">test</div>
+<div id="slideMenu" class="fixed top-0 left-0 w-full h-screen z-40 hidden">
+  <div class="menu absolute right-0 top-0 max-w-[22rem] w-full h-screen">
+    <div
+      class="menuContent pt-14 xl:pt-20 px-12 flex flex-col items-end text-white w-full h-full uppercase text-sm bg-black"
+    >
+      {
+        NAV_ROUTES.map((route) => (
+          <a
+            class={cn(
+              `w-full border-b border-neutral-800 font-thin py-2 text-right hidden max-xl:block`,
+              {
+                "block inDesktop": route.inDesktop,
+              }
+            )}
+            href={route.path}
+          >
+            {route.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
 </div>
+
+<script>
+  import { animate, stagger } from "motion";
+  document.addEventListener("astro:page-load", () => {
+    const queryMatch = window.matchMedia("(min-width: 1280px)");
+    let isMenuOpen = false;
+    let isAnimating = false;
+    const slideMenu = document.getElementById("slideMenu") as Element;
+    const buttonSlideMenu = document.getElementById(
+      "buttonSlideMenu"
+    ) as Element;
+
+    function showSlideMenu() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      slideMenu.classList.remove("hidden");
+      buttonSlideMenu.querySelector("span")?.classList.add("active");
+      animate(slideMenu, { backgroundColor: "#000000d9" });
+      animate(slideMenu.querySelector(".menu") as Element, {
+        clipPath: ["inset(0 0 0 100%)", "inset(0 0 0 0)"],
+      });
+
+      if (queryMatch.matches) {
+        animate(
+          slideMenu.querySelectorAll(".inDesktop") as NodeListOf<Element>,
+          {
+            opacity: [0, 1],
+          },
+          {
+            delay: stagger(0.08),
+          }
+        );
+      } else {
+        animate(
+          slideMenu.querySelectorAll("a") as NodeListOf<Element>,
+          {
+            opacity: [0, 1],
+          },
+          {
+            delay: stagger(0.08),
+          }
+        );
+      }
+
+      setTimeout(() => {
+        isAnimating = false;
+        isMenuOpen = true;
+      }, 300);
+    }
+
+    function hiddenSlideMenu() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      buttonSlideMenu.querySelector("span")?.classList.remove("active");
+
+      animate(slideMenu, { backgroundColor: "#00000000" });
+      animate(slideMenu.querySelector(".menu") as Element, {
+        clipPath: ["inset(0 0 0 0)", "inset(0 0 0 100%)"],
+      });
+
+      setTimeout(() => {
+        slideMenu.classList.add("hidden");
+
+        isAnimating = false;
+        isMenuOpen = false;
+      }, 300);
+    }
+
+    window.addEventListener("scroll", () => {
+      if (isMenuOpen) {
+        hiddenSlideMenu();
+      }
+    })
+
+    buttonSlideMenu.addEventListener("click", () => {
+      if (isMenuOpen) {
+        hiddenSlideMenu();
+      } else {
+        showSlideMenu();
+      }
+    });
+  });
+</script>

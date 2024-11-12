@@ -1,0 +1,15 @@
+export const NAV_ROUTES = [
+    { name: "Falcon 9", path: "/", inDesktop: false },
+    { name: "Falcon Heavy", path: "/", inDesktop: false },
+    { name: "Dragon", path: "/", inDesktop: false },
+    { name: "Starship", path: "/", inDesktop: false },
+    { name: "Human Spacelight", path: "/", inDesktop: false },
+    { name: "Rideshare", path: "/", inDesktop: false },
+    { name: "Starshield", path: "/", inDesktop: false },
+    { name: "Starlink", path: "/", inDesktop: false },
+    { name: "Mission", path: "/", inDesktop: true },
+    { name: "Launches", path: "/", inDesktop: true },
+    { name: "Careers", path: "/", inDesktop: true },
+    { name: "Updates", path: "/", inDesktop: true },
+    { name: "Shop", path: "/", inDesktop: true },
+  ];
