@@ -1,122 +1,152 @@
 ---
-import VideoBackground from '../components/backgrounds/videoBackground.astro';
-import Navbar from '../components/navbar.astro';
-import Layout from '../layouts/Layout.astro';
+import VideoBackground from "../components/backgrounds/videoBackground.astro";
+import Navbar from "../components/navbar.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="SpaceX Clone Home">
-	<Navbar/>
-	<header class="relative w-full h-screen">
-		<VideoBackground class='absolute top-0 left-0' src='/videos/header_background.mp4' />
-	</header>
+  <Navbar />
+  <header class="relative w-full h-screen">
+    <div class="container h-full flex items-end">
+      <div
+        class="flex flex-col items-start mb-32 gap-9 max-md:gap-4 uppercase text-white drop-shadow-md"
+      >
+        <div class="flex flex-col gap-2">
+          <p class="font-thin">UPCOMING LAUNCH</p>
+          <h2
+            class="text-5xl max-md:text-4xl max-w-md max-md:max-w-sm font-semibold"
+          >
+            Starship's Sixth Flight Test
+          </h2>
+        </div>
+        <a
+          class="flex items-center h-14 px-14 border-2 text-xs font-semibold"
+          href="/">Watch</a
+        >
+      </div>
+    </div>
+    <button class="absolute bottom-14 left-1/2 -translate-x-1/2 p-4">
+      <svg width="30px" height="20px" class="animate-arrow-down" aria-label="more content below">
+        <path
+          stroke="#ffffff"
+          stroke-width="2px"
+		  fill="none"
+          d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+      </svg>
+    </button>
+    <VideoBackground
+      class="absolute top-0 left-0"
+      src="/videos/header_background.mp4"
+    />
+  </header>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br /><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 </Layout>
