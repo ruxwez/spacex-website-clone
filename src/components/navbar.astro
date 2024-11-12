@@ -1,14 +1,13 @@
 ---
 import MenuIcon from "./icons/menuIcon.astro";
+import SlideMenu from "./slideMenu.astro";
 ---
 
 <div id="navbar" class="w-full fixed top-0 left-0 z-50">
-  <span class="backgroundNavbar w-full h-0 bg-black absolute top-0 left-0 -z-40"
+  <span class="backgroundNavbar w-full h-0 bg-black absolute top-0 left-0 z-30"
   ></span>
-  <div class="content w-full">
-    <div
-      class="container h-24 flex items-center gap-10 max-xl:h-14"
-    >
+  <div class="relative content w-full z-40">
+    <div class="container h-24 flex items-center gap-10 max-xl:h-14">
       <!-- Logo -->
       <a
         href="/"
@@ -30,25 +29,24 @@ import MenuIcon from "./icons/menuIcon.astro";
         <a href="/"> Starlink </a>
       </nav>
     </div>
-
-    <!-- Navegacion Flotante -->
-    <div
-      class="absolute right-9 max-xl:right-6 top-1/2 -translate-y-1/2 text-white"
+  </div>
+  <!-- Navegacion Flotante -->
+  <div class="fixed content w-full top-0 h-24 z-40">
+    <a
+      class="absolute right-24 top-1/2 -translate-y-1/2 text-white text-xs font-semibold uppercase max-xl:hidden"
+      href=""
     >
-      <div class="flex gap-5">
-        <a
-          class="text-white text-xs font-semibold uppercase max-xl:hidden"
-          href=""
-        >
-          Shop
-        </a>
-
-        <!-- Boton de menu -->
-        <button id="test">
-          <MenuIcon />
-        </button>
-      </div>
-    </div>
+      Shop
+    </a>
+  </div>
+  <!-- Botton del menu  -->
+  <div class="fixed content w-full top-0 h-24 max-xl:h-14 z-50">
+    <button
+      class="absolute right-9 p-3 top-1/2 -translate-y-1/2 text-white"
+      id="test"
+    >
+      <MenuIcon />
+    </button>
   </div>
 </div>
 
@@ -60,9 +58,9 @@ import MenuIcon from "./icons/menuIcon.astro";
     const minScrollToHidden = 200;
     const headerElement = document.querySelector("header") as Element;
     const navbarElement = document.querySelector("#navbar") as Element;
-    const navbarContentElement = navbarElement.querySelector(
+    const navbarContentElement = navbarElement.querySelectorAll(
       ".content"
-    ) as Element;
+    ) as NodeListOf<Element>;
     const navbarBGElement = navbarElement.querySelector(
       ".backgroundNavbar"
     ) as Element;
@@ -109,11 +107,15 @@ import MenuIcon from "./icons/menuIcon.astro";
           } else {
             if (!navbarBGIsHidden) {
               // Si el navbar ya esta oculto y entra en el header, se muestra con otra animacion
-              animate(navbarBGElement, {
-                height: "0%",
-              }, {
-                delay: 0.2,
-              });
+              animate(
+                navbarBGElement,
+                {
+                  height: "0%",
+                },
+                {
+                  delay: 0.2,
+                }
+              );
               navbarBGIsHidden = true;
             }
           }
