@@ -3,7 +3,6 @@ import type { ILaunchSectionContent } from "../../../types/sections/launchSectio
 import { VideoBackground } from "../../backgrounds/videoBackground";
 import { ContentLaunchSection } from "./contentLaunchSection";
 
-
 interface Props {
   type?: "header" | "section";
   isVideo?: boolean;
@@ -17,7 +16,6 @@ const {
   src,
   content,
 } = Astro.props;
-
 ---
 
 <Element
@@ -31,7 +29,9 @@ const {
       <ContentLaunchSection content={content} client:load />
     </div>
   </div>
-  <button class="absolute bottom-14 left-1/2 -translate-x-1/2 p-4">
+  <button
+    class="buttonScrollScreen absolute bottom-14 left-1/2 -translate-x-1/2 p-4"
+  >
     <svg
       width="30px"
       height="20px"
@@ -52,3 +52,18 @@ const {
     )
   }
 </Element>
+
+<script>
+
+  document.addEventListener("astro:page-load", () => {
+    const buttonScrollScreen = document.querySelectorAll(".buttonScrollScreen");
+    buttonScrollScreen.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.scrollTo({
+          top: window.scrollY + window.innerHeight,
+          behavior: "smooth",
+        });
+      });
+    });
+  });
+</script>
