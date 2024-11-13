@@ -1,8 +1,13 @@
 import { useRef, type HTMLAttributes } from "react";
 import { animate } from "motion";
 
+interface Props extends HTMLAttributes<HTMLAnchorElement> {
+  href: string;
+}
+
+
 export const ButtonPrimary = (
-  props: HTMLAttributes<HTMLAnchorElement>
+  props: Props
 ): JSX.Element => {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -30,13 +35,14 @@ export const ButtonPrimary = (
     });
   };
 
+
   return (
     <a
+      {...props}
       ref={ref}
       onMouseEnter={onHoverEnter}
       onMouseLeave={onHoverLeave}
       className="buttonPrimary relative flex items-center h-14 px-14 border-2 text-xs font-semibold hover:text-black transition-colors"
-      href="/"
     >
       <span
         style={{

@@ -11,13 +11,13 @@ export default {
           "0%": { opacity: 0, transform: "translateY(-10px)" },
           "20%": { opacity: 1, transform: "translateY(-10px)" },
           "40%": { opacity: 1, transform: "translateY(10px)" },
-		  "80%": { opacity: 0, transform: "translateY(10px)" },
-		  "100%": { opacity: 0, transform: "translateY(-10px)" },
+          "80%": { opacity: 0, transform: "translateY(10px)" },
+          "100%": { opacity: 0, transform: "translateY(-10px)" },
         },
       },
-	  animation: {
-		"arrow-down": "arrowAnimation 3s infinite",
-	  }
+      animation: {
+        "arrow-down": "arrowAnimation 3s infinite",
+      },
     },
     container: {
       center: true,

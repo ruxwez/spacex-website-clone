@@ -1,150 +1,76 @@
 ---
-import VideoBackground from "../components/backgrounds/videoBackground.astro";
-import {ButtonPrimary} from "../components/button/buttonPrimary.tsx";
+import Footer from "../components/footer.astro";
 import Navbar from "../components/navbar.astro";
+import LaunchsSection from "../components/section/home/launchsSection.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="SpaceX Clone Home">
+<Layout title="SpaceX Clone Home">∏
   <Navbar />
-  <header class="relative w-full h-screen">
-    <div class="container h-full flex items-end">
-      <div
-        class="flex flex-col items-start mb-32 gap-9 max-md:gap-4 uppercase text-white drop-shadow-md"
-      >
-        <div class="flex flex-col gap-2">
-          <p class="font-thin">UPCOMING LAUNCH</p>
-          <h2
-            class="text-5xl max-md:text-4xl max-w-md max-md:max-w-sm font-semibold"
-          >
-            Starship's Sixth Flight Test
-          </h2>
-        </div>
-        <ButtonPrimary client:load>Watch</ButtonPrimary>
-      </div>
-    </div>
-    <button class="absolute bottom-14 left-1/2 -translate-x-1/2 p-4">
-      <svg width="30px" height="20px" class="animate-arrow-down" aria-label="more content below">
-        <path
-          stroke="#ffffff"
-          stroke-width="2px"
-		  fill="none"
-          d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
-      </svg>
-    </button>
-    <VideoBackground
-      class="absolute top-0 left-0 -z-10 brightness-75"
-      src="/videos/header_background.mp4"
-    />
-  </header>
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+  <LaunchsSection
+    content={{
+      isComing: true,
+      showSubtitle: true,
+      title: "Starship's Sixth Flight Test",
+      href: "https://www.spacex.com/launches/mission/?missionId=starship-flight-6",
+    }}
+    type="header"
+    isVideo
+    src="/videos/header_background.mp4"
+  />
+
+  <LaunchsSection
+    content={{
+      isComing: true,
+      showSubtitle: true,
+      title: "Starlink Mission",
+      href: "https://www.spacex.com/launches/mission/?missionId=sl-9-11",
+    }}
+    type="section"
+    src="/images/Launch_Page_Starlink1_vertical_18_DESKTOP_c051df793a.jpg"
+  />
+
+  <LaunchsSection
+    content={{
+      showSubtitle: true,
+
+      title: "Koreasat-6A Mission",
+      href: "https://www.spacex.com/launches/mission/?missionId=koreasat-6a",
+    }}
+    type="section"
+    src="/images/Koreasat6_A_UCS_DSC_8729_mobile_c2244ce741.jpg"
+  />
+
+  <LaunchsSection
+    content={{
+      showSubtitle: true,
+      title: "Starlink Mission",
+      href: "https://www.spacex.com/launches/mission/?missionId=sl-6-69",
+    }}
+    type="section"
+    src="/images/starlink_6_69_desktop_5f9e895a09.jpg"
+  />
+
+  <LaunchsSection
+    content={{
+      title: "ADVANCING HUMAN SPACEFLIGHT",
+      href: "https://www.spacex.com/updates/#eva-suit",
+      linkTitle: "Learn More",
+    }}
+    type="section"
+    src="/images/Eva_Suit_Desktop_alternate_1cf9bae18e.jpg"
+  />
+
+  <LaunchsSection
+    content={{
+
+      title: "TO MAKE LIFE MULTIPLANETARY",
+      href: "https://www.spacex.com/updates/#eva-suit",
+      linkTitle: "Learn More",
+    }}
+    type="section"
+    src="/images/make_life_multiplanetary_desktop_3fa7cff73c.jpg"
+  />
+  <Footer/>
 </Layout>
