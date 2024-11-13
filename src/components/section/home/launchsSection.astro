@@ -1,20 +1,14 @@
 ---
+import type { ILaunchSectionContent } from "../../../types/sections/launchSection";
 import { VideoBackground } from "../../backgrounds/videoBackground";
-import { ButtonPrimary } from "../../button/buttonPrimary";
+import { ContentLaunchSection } from "./contentLaunchSection";
 
-interface IContent {
-  isComing?: boolean;
-  showSubtitle?: boolean;
-  title: string;
-  href: string;
-  linkTitle?: string;
-}
 
 interface Props {
   type?: "header" | "section";
   isVideo?: boolean;
   src: string;
-  content: IContent;
+  content: ILaunchSectionContent;
 }
 
 const {
@@ -23,6 +17,7 @@ const {
   src,
   content,
 } = Astro.props;
+
 ---
 
 <Element
@@ -33,27 +28,7 @@ const {
 >
   <div class="w-full h-full backdrop-brightness-75">
     <div class="container h-full flex items-end">
-      <div
-        class="flex flex-col items-start mb-32 gap-9 max-md:gap-4 uppercase text-white drop-shadow-md"
-      >
-        <div class="flex flex-col gap-2">
-          {
-            content.showSubtitle && (
-              <p class="font-thin">
-                {content.isComing ? "Upcoming launch" : "Recent launch"}
-              </p>
-            )
-          }
-          <h2
-            class="text-5xl max-md:text-4xl max-w-[31rem] max-md:max-w-sm font-semibold"
-          >
-            {content.title}
-          </h2>
-        </div>
-        <ButtonPrimary href={content.href} client:load>
-          {content.linkTitle ? content.linkTitle : (content.isComing ? "Watch" : "Rewatch")}
-        </ButtonPrimary>
-      </div>
+      <ContentLaunchSection content={content} client:load />
     </div>
   </div>
   <button class="absolute bottom-14 left-1/2 -translate-x-1/2 p-4">
@@ -73,10 +48,7 @@ const {
 
   {
     isVideo && (
-      <VideoBackground
-        className="absolute top-0 left-0 -z-10"
-        src={src}
-      />
+      <VideoBackground className="absolute top-0 left-0 -z-10" src={src} />
     )
   }
 </Element>
