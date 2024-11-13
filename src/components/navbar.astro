@@ -1,4 +1,5 @@
 ---
+import { NAV_ROUTES } from "../consts/navRoutes";
 import MenuIcon from "./icons/menuIcon.astro";
 import SlideMenu from "./slideMenu.astro";
 ---
@@ -11,7 +12,7 @@ import SlideMenu from "./slideMenu.astro";
       <!-- Logo -->
       <a
         href="/"
-        class="max-xl:absolute max-xl:left-1/2 max-xl:-translate-x-1/2 mb-1.5 w-36 sm:w-52 max-xl:pl-3"
+        class="max-xl:absolute max-xl:left-1/2 max-xl:-translate-x-1/2 mb-1.5 w-40 sm:w-52 max-xl:pl-3"
       >
         <img src="/logo.svg" class="w-full aspect-[210/26.25]" alt="" />
       </a>
@@ -19,14 +20,21 @@ import SlideMenu from "./slideMenu.astro";
       <nav
         class="text-white text-xs font-semibold uppercase flex items-center gap-6 max-xl:hidden"
       >
-        <a href="/"> Falcon 9 </a>
-        <a href="/"> Falcon Heavy </a>
-        <a href="/"> Dragon </a>
-        <a href="/"> Starship </a>
-        <a href="/"> Human Spacelight </a>
-        <a href="/"> Rideshare </a>
-        <a href="/"> Starshield </a>
-        <a href="/"> Starlink </a>
+        {
+          NAV_ROUTES.map((route) => {
+            let name = route.name.toLowerCase()
+            let isDesktop = route.inDesktop
+
+            if(name === "shop") return 
+            if(isDesktop) return
+
+            return (
+              <a href="/">
+                {route.name}
+              </a>
+            )
+          })
+        }
       </nav>
     </div>
   </div>
@@ -42,7 +50,7 @@ import SlideMenu from "./slideMenu.astro";
   <!-- Botton del menu  -->
   <div class="fixed content w-full top-0 h-24 max-xl:h-14 z-50">
     <button
-      class="absolute right-9 p-3 top-1/2 -translate-y-1/2 text-white"
+      class="absolute right-9 max-xl:right-4 p-3 top-1/2 -translate-y-1/2 text-white"
       id="buttonSlideMenu"
     >
       <MenuIcon />
