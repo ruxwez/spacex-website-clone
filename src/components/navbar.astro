@@ -87,6 +87,7 @@ import SlideMenu from "./slideMenu.astro";
           if (!navbarIsHidden && st > minScrollToHidden) {
             animate(navbarContentElement, {
               opacity: 0,
+              filter: "blur(5px)",
             });
             navbarIsHidden = true;
             navbarBGIsHidden = true;
@@ -96,6 +97,7 @@ import SlideMenu from "./slideMenu.astro";
           if (!navbarIsHidden) {
             animate(navbarContentElement, {
               opacity: 0,
+              filter: "blur(5px)",
             });
             animate(navbarBGElement, {
               height: "0%",
@@ -111,6 +113,8 @@ import SlideMenu from "./slideMenu.astro";
           if (navbarIsHidden) {
             animate(navbarContentElement, {
               opacity: 1,
+              filter: "blur(0px)",
+
             });
             navbarIsHidden = false;
           } else {
@@ -133,6 +137,8 @@ import SlideMenu from "./slideMenu.astro";
           if (navbarIsHidden) {
             animate(navbarContentElement, {
               opacity: 1,
+              filter: "blur(0px)",
+
             });
 
             animate(navbarBGElement, {
