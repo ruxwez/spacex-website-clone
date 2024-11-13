@@ -1,18 +1,19 @@
-import { useRef, type HTMLAttributes } from "react";
 import { animate } from "motion";
+import { useRef, type HTMLAttributes } from "react";
 
 interface Props extends HTMLAttributes<HTMLAnchorElement> {
   href: string;
 }
 
-
 export const ButtonPrimary = (
   props: Props
 ): JSX.Element => {
+  let isAnimating = false;
   const ref = useRef<HTMLAnchorElement>(null);
 
   const onHoverEnter = () => {
     if (!ref.current) return;
+
     let span = ref.current.querySelector("span") as HTMLSpanElement;
 
     span.style.top = "unset";
@@ -25,6 +26,7 @@ export const ButtonPrimary = (
 
   const onHoverLeave = () => {
     if (!ref.current) return;
+
     let span = ref.current.querySelector("span") as HTMLSpanElement;
 
     span.style.bottom = "unset";
